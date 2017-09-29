@@ -8,6 +8,6 @@ const data = [{
         author: "Luke",
         text: "you're __right!__"
     }
-]
+];
 
 module.exports = data;

@@ -19,8 +19,7 @@
             "off"
         ],
         "linebreak-style": [
-            "error",
-            "unix"
+            "error"
         ],
         "quotes": [
             "error",
