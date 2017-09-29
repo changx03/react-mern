@@ -1,3 +1,6 @@
+/*eslint linebreak-style: ["error", "windows"]*/
+/*eslint no-console: 0*/
+
 import React, { Component } from 'react';
 import style from './style';
 
@@ -5,25 +8,35 @@ export default class CommentForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            author: '',
-            text: ''
+            author: "",
+            text: ""
         };
         this.handleAuthorChange = this.handleAuthorChange.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleAuthorChange = (e) => {
+    handleAuthorChange(e) {
         this.setState({ author: e.target.value });
     }
 
-    handleTextChange = (e) => {
+    handleTextChange(e) {
         this.setState({ text: e.target.value });
     }
 
-    handleSubmit = (e) => {
+    handleSubmit(e) {
         e.preventDefault();
-        console.log(`${this.state.author} said "${this.state.text}"`);
+
+        let author = this.state.author.trim(),
+            text = this.state.text.trim();
+        console.log(`${author} said "${text}"`);
+        if(!author || !text) { return; }
+
+        this.props.onCommentSubmit({
+            author: author,
+            text: text
+        });
+        this.setState({ author: "", text: "" });
     }
 
     render() {
@@ -32,12 +45,14 @@ export default class CommentForm extends Component {
                 <input type="text"
                     name="author"
                     id="author"
+                    placeholder="Your name..."
                     style={style.commentFormAuthor}
                     value={this.state.author}
                     onChange={this.handleAuthorChange} />
                 <input type="text"
                     name="text"
                     id="text"
+                    placeholder="Say something..."
                     style={style.commentFormText}
                     value={this.state.text}
                     onChange={this.handleTextChange} />

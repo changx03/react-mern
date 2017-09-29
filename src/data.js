@@ -1,3 +1,4 @@
+/*eslint linebreak-style: ["error", "windows"]*/
 const data = [{
         id: 1,
         author: "Bryan",
